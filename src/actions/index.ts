@@ -46,7 +46,12 @@ export const initTodos = (filter: string) => {
         response: normalize(getTodos(filter), arrayOfTodos)
     }
 }
-
+export const getTodoList = (filter: string) => {
+    return {
+        type: 'GET_TODO_LIST',
+        filter
+    }
+}
 export const addTodo = (text: string) => {
     const info = {
         id: v4(),
@@ -56,6 +61,25 @@ export const addTodo = (text: string) => {
     fakeDatabase.todos.push(info);
     return {
         type: 'ADD_TODO',
-        response: normalize(fakeDatabase.todos, todo)
+        response: normalize(info, todo)
+    }
+}
+
+export const toggleTodo = (id: string, filter: string) => {
+    fakeDatabase.todos.forEach((item) => {
+        if (id === item.id) {
+            item.completed = !item.completed;
+        }
+    })
+    return {
+        type: 'TOGGLE_TODO',
+        response: normalize(getTodos(filter), arrayOfTodos)
+    }
+}
+
+export const toggleType = (filter: string) => {
+    return {
+        type: 'TOGGLE_TYPE',
+        filter
     }
 }

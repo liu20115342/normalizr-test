@@ -10,7 +10,7 @@ const TodoList = () => {
         const ids = listByFilter[filter].ids;
         const todos = ids.map((id: string) => {
             return byId[id];
-        });
+        }).filter(Boolean);
         return {
             todos,
             filter
@@ -20,16 +20,12 @@ const TodoList = () => {
         dispatch(initTodos(filter));
     }, [filter])
 
-    const toggleTodo = (id: string) => {
-
-    }
     return (
         <ul>
             {
                 todos.map(todo => (
                     <Todo
                         key={todo.id}
-                        onClick={() => toggleTodo(todo.id)}
                         {...todo}
                     />
                 ))

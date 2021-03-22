@@ -3,11 +3,11 @@ type Filter = 'all' | 'active' | 'completed';
 const createList = (filter: Filter) => {
     const ids = (state = [], action: any) => {
         switch (action.type) {
-            case 'FETCH_TODOS_SUCCESS':
+            case 'INIT_TODOS':
                 return filter === action.filter ?
                     action.response.result :
                     state;
-            case 'ADD_TODO_SUCCESS':
+            case 'ADD_TODO':
                 return filter !== 'completed' ?
                     [...state, action.response.result] :
                     state;

@@ -12,7 +12,7 @@ const filterReducers = (
     state: string = 'all',
     action: {type: string, filter: string}
 ): string => {
-    if (action.type === 'TARGET') {
+    if (action.type === 'TOGGLE_TYPE') {
         return action.filter
     }
     return state;

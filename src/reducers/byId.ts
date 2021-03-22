@@ -1,7 +1,8 @@
 const byId = (state={}, action: any) => {
-    if (action.type === 'INIT_TODOS') {
-        console.log(state, action);
+    if (action.response) {
+        console.log('action', action);
         return {
+            ...state,
             ...action.response.entities.todos,
         }
     }
